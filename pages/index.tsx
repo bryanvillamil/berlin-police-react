@@ -5,7 +5,7 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { LayoutBikes, Header, FormSearch, BoxBike } from "@components";
 import { useBikes } from "@services";
 import { BikeInfo } from "@types";
-import { WrapperBikesInfo } from "./styled";
+import { WrapperBikesInfo } from "../styles/styled";
 
 type FormFields = {
   search: string;
