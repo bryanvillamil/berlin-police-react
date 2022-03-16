@@ -17,36 +17,37 @@ export const ContentHeader = styled.header`
 `;
 
 export const HeaderLogo = styled.div`
-    width: 25%;
-    display: flex;
-    justify-content: flex-end;
-    order: 2;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  order: 2;
+  svg {
+    font-size: 50px;
+    fill: #3498db;
+  }
+  ${up("md")} {
+    order: 1;
+    justify-content: flex-start;
     svg {
-        font-size: 50px;
-        fill: #3498DB;
+      font-size: 65px;
     }
-    ${up("md")} {
-        order: 1;
-        justify-content: flex-start;
-        svg {
-            font-size: 65px;
-        }
-    }
+  }
 `;
 
 export const HeaderTitle = styled.div`
-    display: flex;
-    flex-grow: 1;
-    order: 1;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  order: 1;
+  h1 {
+    color: #fff;
+    font-size: 25px;
+    margin: 0;
+  }
+  ${up("md")} {
+    order: 2;
     h1 {
-        color: #fff;
-        font-size: 25px;
-        margin: 0;
+      font-size: 40px;
     }
-    ${up("md")} {
-        order: 2;
-        h1 {
-            font-size: 40px;
-        }
-    }
+  }
 `;
