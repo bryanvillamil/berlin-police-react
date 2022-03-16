@@ -30,22 +30,6 @@ const Home = () => {
 
   const bikes = data?.pages[0].bikes;
 
-  const filterBikeForDate = (bikes: BikeInfo[] | undefined) => {
-    if (!bikes) {
-      return [];
-    }
-    if (dataFilters && dataFilters.dateFrom && dataFilters.dateTo) {
-      const startDate = new Date(dataFilters.dateFrom);
-      const endDate = new Date(dataFilters.dateTo);
-      return bikes.filter(
-        (bike) =>
-          bike.date_stolen < endDate.getTime() &&
-          bike.date_stolen > startDate.getTime()
-      );
-    }
-    return bikes;
-  };
-
   const memoriesDataBikes = useMemo(() => {
     if (!bikes) {
       return [];
@@ -71,6 +55,8 @@ const Home = () => {
   };
 
   if (error) return "Ha ocurrido un Error!!!";
+
+  console.log("memoriesDataBikes", memoriesDataBikes);
 
   return (
     <>
