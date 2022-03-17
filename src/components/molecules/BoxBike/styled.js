@@ -45,23 +45,29 @@ export const BoxImg = styled.div`
 export const BoxInfo = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-left: 20px;
   align-content: flex-start;
   order: 1;
   width: 100%;
   h2 {
     width: 100%;
     margin: 0;
+    margin-bottom: 12px;
     color: #3498db;
+    font-size: 20px;
   }
   ${up("md")} {
     order: 2;
     width: initial;
+    margin-left: 20px;
+    h2 {
+      font-size: 24px;
+    }
   }
 `;
 
 export const Description = styled.p`
   width: 100%;
+  margin-top: 0;
   margin-bottom: 10px;
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -72,6 +78,7 @@ export const Description = styled.p`
 export const BoxInfoDate = styled.p`
   display: flex;
   align-items: center;
+  width: 100%;
   margin: 0;
   color: #3498db;
   span {
