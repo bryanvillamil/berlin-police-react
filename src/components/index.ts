@@ -1,5 +1,6 @@
 // Atoms
 export * from "./atoms/Loading";
+export * from "./atoms/CountBikes";
 
 // Molecules
 export * from "./molecules/BoxBike";

@@ -122,7 +122,7 @@ export const Submit = styled.button`
   ${up("md")} {
     background: #111;
     padding: 8px 20px;
-    width: auto;
+    width: 60%;
     margin: 0;
     height: 40px;
   }
@@ -132,5 +132,7 @@ export const Reset = styled(Submit)`
   background: #111;
   ${up("md")} {
     background: #c33939;
+    width: 38%;
+    padding: 8px 15px;
   }
 `;

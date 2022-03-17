@@ -11,8 +11,8 @@ export const Pagination = (props: paginationProps) => {
     const { page, setPage, disabled } = props;
   return (
     <ContentPagination>
-        <ButtonPag className="prev" disabled={page == 0} onClick={() => setPage(() => page - 1)}><GrLinkPrevious /> prev</ButtonPag>
-        <SpanPage>{page + 1}</SpanPage>
+        <ButtonPag className="prev" disabled={page <= 1} onClick={() => setPage(() => page - 1)}><GrLinkPrevious /> prev</ButtonPag>
+        <SpanPage>{page}</SpanPage>
         <ButtonPag className="next" disabled={disabled} onClick={() => setPage(() => page + 1)}>next <GrLinkNext /></ButtonPag>
     </ContentPagination>
   )

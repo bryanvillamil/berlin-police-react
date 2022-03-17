@@ -1,17 +1,27 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useQuery } from 'react-query' 
 import Head from "next/head";
 import { SubmitHandler } from "react-hook-form";
-import { LayoutBikes, Header, FormSearch, BoxBike, Pagination, NotFound, Loading } from "@components";
-import { useBikes } from "@services";
+import { LayoutBikes, Header, FormSearch, BoxBike, Pagination, NotFound, Loading, CountBikes } from "@components";
+import { useBikes, api } from "@services";
 import { locationEnum, FormFields } from "@types";
 import { WrapperBikesInfo } from "../styles/styled";
 
 const Home = () => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(0);
   const [dataFilters, setDataFilters] = useState<Partial<FormFields>>({
     search: "",
     location: locationEnum.berlin
-  });
+  });  
+
+  const { refetch: refetchCount, isFetching } = useQuery(
+    'bikesCount',
+    () => api.get(`/search/count?location=${dataFilters.location}&stolenness=proximity`)
+      .then(res => {
+        setCount(res.data.proximity);
+      })
+  )
 
   const { data, isLoading, error } = useBikes({
     query: dataFilters.search,
@@ -48,12 +58,17 @@ const Home = () => {
     return bikes;
   }, [bikes, dataFilters]);
 
+  useEffect(() => {
+    refetchCount();
+  }, [dataFilters.location, refetchCount])
+
+
   const onSubmit: SubmitHandler<FormFields> = (dataRes) => {
     setDataFilters(dataRes);
-    setPage(0)
+    setPage(1)
   };
 
-  if (error) return "Ha ocurrido un Error!!!";
+  if (error) return "Oooops, Something went wrong!!!";
 
   return (
     <>
@@ -69,9 +84,9 @@ const Home = () => {
       <LayoutBikes>
         <FormSearch onSubmit={onSubmit} />
 
-        {/* {!isLoading && <h2>Total: {data?.pages.}</h2>} */}
 
         <WrapperBikesInfo>
+          <CountBikes isLoading={isFetching} dataCount={count} />
           {isLoading
             ? <Loading />
             : memoriesDataBikes.length == 0 ? (

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import { BikeInfo } from "@types";
 
 // const header = {
@@ -8,6 +8,9 @@ import { BikeInfo } from "@types";
 
 export const api = axios.create({
   baseURL: `https://bikeindex.org/api/v3`,
+  headers: {
+    "Content-type": "application/json"
+  }
 });
 
 const BIKES_PATH = "/search";
@@ -37,3 +40,13 @@ export const useBikes = (
     return result.data;
   });
 };
+
+
+export const getBikesCount = () => {
+  axios.get(`${api}${BIKES_PATH}/count`)
+      .then(res => {
+        const data = res.data;
+        console.log('data', data);
+        
+      })
+}
