@@ -21,3 +21,16 @@ export interface BikeInfo {
   url: string;
   year: number;
 }
+
+export enum locationEnum {
+  berlin = "berlin",
+  munich = "munich",
+  hamburgo = "hamburgo"
+}
+
+export type FormFields = {
+  search: string;
+  location: locationEnum;
+  dateFrom: Date;
+  dateTo: Date;
+};

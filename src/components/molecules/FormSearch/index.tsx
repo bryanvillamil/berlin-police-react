@@ -1,7 +1,8 @@
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Form } from "./styled";
+import { AiOutlineCalendar } from 'react-icons/ai'
+import { Form, Search, SelectCity, Submit } from "./styled";
 
 type FormProps = {
   onSubmit: any;
@@ -14,22 +15,31 @@ export const FormSearch = (props: FormProps) => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <input
+      <Search
         autoComplete="off"
         {...register("search")}
         placeholder="Search case descriptions"
       />
+
+      <SelectCity defaultValue="berlin" {...register("location")}>
+        <option value="berlin">Berlin</option>
+        <option value="munich">Munich</option>
+        <option value="hamburgo">Hamburgo</option>
+      </SelectCity>
 
       <Controller
         name="dateFrom"
         control={control}
         defaultValue={undefined}
         render={({ field }) => (
-          <DatePicker
-            onChange={(e) => field.onChange(e)}
-            selected={field.value}
-            placeholderText="From"
-          />
+          <>
+            <DatePicker
+              onChange={(e) => field.onChange(e)}
+              selected={field.value}
+              placeholderText="From"
+            />
+            {/* <AiOutlineCalendar /> */}
+          </>
         )}
       />
 
@@ -46,7 +56,7 @@ export const FormSearch = (props: FormProps) => {
         )}
       />
 
-      <button type="submit">Submit</button>
+      <Submit type="submit">Submit</Submit>
     </Form>
   );
 };

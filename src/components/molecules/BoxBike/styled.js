@@ -7,14 +7,15 @@ export const Box = styled.div`
   padding: 25px;
   border-radius: 5px;
   border: 1px solid;
+  box-shadow: inset 0px 0px 20px 8px #e0dada;
   margin-bottom: 20px;
   ${up("md")} {
   }
 `;
 
 export const BoxImg = styled.div`
-  width: 180px;
   height: 180px;
+  min-width: 180px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -43,5 +44,20 @@ export const BoxInfo = styled.div`
   }
   p {
     width: 100%;
+    margin-bottom: 5px;
+  }
+`;
+
+export const BoxInfoDate = styled.p`
+  display: flex;
+  align-items: center;
+  margin: 0;
+  color: #3498db;
+  span {
+    margin-left: 5px;
+    font-weight: 700;
+    font-size: 12px;
+    color: #000;
+    margin-top: 4px;
   }
 `;

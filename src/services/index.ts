@@ -29,12 +29,13 @@ export const useBikes = (
   options: Partial<Record<BikesFilters, string | number>>
 ) => {
   return useInfiniteQuery([BIKES_PATH, options], async () => {
-    const data = await api.get<{ bikes: BikeInfo[] }>(
+    const result = await api.get<{ bikes: BikeInfo[] }>(
       `${BIKES_PATH}?${Object.entries(options).reduce(
         (prev, curr) => `${prev}&${curr[0]}=${curr[1]}`,
         ""
       )}`
     );
-    return data.data;
+
+    return result.data;
   });
 };

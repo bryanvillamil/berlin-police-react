@@ -43,6 +43,9 @@ export const HeaderTitle = styled.div`
     color: #fff;
     font-size: 25px;
     margin: 0;
+    span {
+      text-transform: capitalize;
+    }
   }
   ${up("md")} {
     order: 2;

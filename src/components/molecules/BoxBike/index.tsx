@@ -1,12 +1,19 @@
+import { useState } from "react";
 import Image from "next/image";
 import { GrBike } from "react-icons/gr";
 import { BikeInfo } from "@types";
-import { Box, BoxImg, BoxInfo } from "./styled";
+import { Box, BoxImg, BoxInfo, BoxInfoDate } from "./styled";
 
 type Props = Pick<BikeInfo, "title"> & Partial<BikeInfo>;
 
 export const BoxBike = (props: Props) => {
-  const { title, description, large_img } = props;
+  const { title, description, large_img, stolen_location, date_stolen } = props;
+
+  let dateformat = '';
+  if (date_stolen) {
+    const dateStolen = new Date(+`${date_stolen}000`);
+    dateformat = dateStolen.toLocaleString();
+  }
 
   return (
     <Box>
@@ -20,7 +27,10 @@ export const BoxBike = (props: Props) => {
 
       <BoxInfo>
         <h2>{title}</h2>
-        <p>{description}</p>
+        {description && <p>{description}</p>}
+        <BoxInfoDate>Stolen Location: <span>{stolen_location}</span></BoxInfoDate>
+        <BoxInfoDate>Date Stolen: <span>{dateformat}</span></BoxInfoDate>
+   
       </BoxInfo>
     </Box>
   );

@@ -1,32 +1,26 @@
 import { useMemo, useState } from "react";
 import Head from "next/head";
-import { useQuery } from "react-query";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { LayoutBikes, Header, FormSearch, BoxBike } from "@components";
+import { SubmitHandler } from "react-hook-form";
+import { LayoutBikes, Header, FormSearch, BoxBike, Pagination } from "@components";
 import { useBikes } from "@services";
-import { BikeInfo } from "@types";
+import { locationEnum, FormFields } from "@types";
 import { WrapperBikesInfo } from "../styles/styled";
 
-type FormFields = {
-  search: string;
-  dateFrom: Date;
-  dateTo: Date;
-};
-
 const Home = () => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [dataFilters, setDataFilters] = useState<Partial<FormFields>>({
     search: "",
+    location: locationEnum.berlin
   });
 
   const { data, isLoading, error } = useBikes({
     query: dataFilters.search,
-    location: "52°31′00″N,13°23′00", // Berlin
+    location: dataFilters.location,
+    stolenness: 'proximity',
+    distance: 10,
     page,
     per_page: 10,
   });
-
-  console.log(data);
 
   const bikes = data?.pages[0].bikes;
 
@@ -50,13 +44,10 @@ const Home = () => {
   }, [bikes, dataFilters]);
 
   const onSubmit: SubmitHandler<FormFields> = (dataRes) => {
-    console.log(dataRes);
     setDataFilters(dataRes);
   };
 
   if (error) return "Ha ocurrido un Error!!!";
-
-  console.log("memoriesDataBikes", memoriesDataBikes);
 
   return (
     <>
@@ -66,7 +57,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Header city={dataFilters?.location} />
 
       <LayoutBikes>
         <FormSearch onSubmit={onSubmit} />
@@ -77,19 +68,22 @@ const Home = () => {
           {isLoading
             ? "...Loading..."
             : memoriesDataBikes.map((bike) => {
+              // stolen_location  date_stolen
+              const titleFull = `${bike.title} ${bike.frame_colors && `(${bike.frame_colors.join()})`} `
                 return (
                   <BoxBike
                     key={bike.id}
                     description={bike.description ? bike.description : ""}
-                    title={bike.title}
+                    title={titleFull}
                     large_img={bike.large_img}
+                    stolen_location={bike.stolen_location}
+                    date_stolen={bike.date_stolen}
                   />
                 );
               })}
         </WrapperBikesInfo>
 
-        <button onClick={() => setPage((prev) => prev + 1)}>next</button>
-        <button onClick={() => setPage((prev) => prev - 1)}>prec</button>
+        <Pagination page={page} setPage={setPage} />
       </LayoutBikes>
     </>
   );
