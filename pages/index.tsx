@@ -7,7 +7,7 @@ import { locationEnum, FormFields } from "@types";
 import { WrapperBikesInfo } from "../styles/styled";
 
 const Home = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [dataFilters, setDataFilters] = useState<Partial<FormFields>>({
     search: "",
     location: locationEnum.berlin
@@ -25,6 +25,7 @@ const Home = () => {
   const bikes = data?.pages[0].bikes;
 
   const memoriesDataBikes = useMemo(() => {
+    
     if (!bikes) {
       return [];
     }
@@ -34,12 +35,16 @@ const Home = () => {
       const endDate = new Date(dataFilters.dateTo);
 
       return bikes.filter((bike) => {
+        const startParse = startDate.getTime() / 1000;
+        const endParse = endDate.getTime() / 1000;
+
         return (
-          bike.date_stolen <= endDate.getTime() / 1000 &&
-          bike.date_stolen >= startDate.getTime() / 1000
+          bike.date_stolen <= endParse &&
+          bike.date_stolen >= startParse
         );
       });
     }
+
     return bikes;
   }, [bikes, dataFilters]);
 

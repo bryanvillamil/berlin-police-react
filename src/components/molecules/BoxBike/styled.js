@@ -11,6 +11,7 @@ export const Box = styled.div`
   box-shadow: inset 0px 0px 20px 8px #e0dada;
   margin-bottom: 20px;
   ${up("md")} {
+    flex-wrap: nowrap;
   }
 `;
 
