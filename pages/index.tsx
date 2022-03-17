@@ -86,7 +86,7 @@ const Home = () => {
 
 
         <WrapperBikesInfo>
-          <CountBikes isLoading={isFetching} dataCount={count} />
+          <CountBikes dataCount={count} />
           {isLoading
             ? <Loading />
             : memoriesDataBikes.length == 0 ? (
@@ -113,7 +113,7 @@ const Home = () => {
         <Pagination 
           page={page} 
           setPage={setPage} 
-          disabled={memoriesDataBikes.length == 0}
+          disabled={page >= memoriesDataBikes.length}
         />
       </LayoutBikes>
     </>
