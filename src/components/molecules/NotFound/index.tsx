@@ -4,7 +4,7 @@ import { ContentNotFound } from './styled'
 export const NotFound = () => {
   return (
     <ContentNotFound>
-        <h2>Not Found</h2>
+        <h2>¡No results found!</h2>
         <BiMessageError />
     </ContentNotFound>
   )
