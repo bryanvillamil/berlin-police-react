@@ -9,6 +9,56 @@ export const Form = styled.form`
   margin: 10px auto 30px;
   max-width: 850px;
   border-radius: 5px;
+  input {
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid #777;
+    padding: 10px;
+  }
+  ${up("md")} {
+    justify-content: space-around;
+    padding: 30px 25px;
+    background: #3498db;
+    align-items: center;
+    input {
+      height: 40px;
+    }
+  }
+  ${up("lg")} {
+    max-width: 991px;
+  }
+`;
+
+export const Search = styled.input`
+  width: 100%;
+  margin-bottom: 15px;
+  ${up("md")} {
+    width: 58%;
+    margin-bottom: 20px;
+  }
+`;
+
+export const SelectCity = styled.select`
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #777;
+  cursor: pointer;
+  margin-bottom: 15px;
+  ${up("md")} {
+    width: 40%;
+    height: 40px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const ContainerDates = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   .react-datepicker {
     &-wrapper {
       width: 48%;
@@ -22,58 +72,31 @@ export const Form = styled.form`
       }
     }
   }
-
-  input {
-    height: 50px;
-    border-radius: 4px;
-    border: 1px solid #777;
-    padding: 10px;
-  }
   ${up("md")} {
-    justify-content: space-around;
-    padding: 30px 25px;
-    background: #3498db;
-    align-items: center;
+    width: 70%;
     .react-datepicker {
       &-wrapper {
-        width: 150px;
+        width: 48%;
       }
-    }
-    input {
-      height: 40px;
     }
   }
   ${up("lg")} {
-    max-width: 991px;
-    .react-datepicker {
-      &-wrapper {
-        width: 200px;
-      }
-    }
+    width: 74%;
   }
 `;
 
-export const Search = styled.input`
+export const ContentButtons = styled.div`
   width: 100%;
-  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   ${up("md")} {
-    width: auto;
-    margin-bottom: 0;
+    width: 28%;
   }
-`;
-
-export const SelectCity = styled.select`
-  width: 100%;
-  height: 50px;
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #777;
-  cursor: pointer;
-  margin-bottom: 15px;
-  ${up("md")} {
-    width: auto;
-    height: 40px;
-    margin-bottom: 0;
+  ${up("lg")} {
+    width: 24%;
+    justify-content: space-around;
   }
 `;
 
@@ -87,11 +110,14 @@ export const Submit = styled.button`
   transition: all 0.5s ease-in-out;
   text-transform: uppercase;
   font-weight: 800;
-  margin: 15px auto 0;
+  margin: 15px 0 0;
   width: 100%;
   height: 50px;
   &:hover {
     transform: scale(1.1);
+  }
+  ${up("sm")} {
+    width: 48%;
   }
   ${up("md")} {
     background: #111;
@@ -99,5 +125,12 @@ export const Submit = styled.button`
     width: auto;
     margin: 0;
     height: 40px;
+  }
+`;
+
+export const Reset = styled(Submit)`
+  background: #111;
+  ${up("md")} {
+    background: #c33939;
   }
 `;

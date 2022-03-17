@@ -1,8 +1,15 @@
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AiOutlineCalendar } from 'react-icons/ai'
-import { Form, Search, SelectCity, Submit } from "./styled";
+import { 
+  Form, 
+  Search, 
+  SelectCity, 
+  ContainerDates,
+  ContentButtons, 
+  Submit, 
+  Reset 
+} from "./styled";
 
 type FormProps = {
   onSubmit: any;
@@ -11,7 +18,7 @@ type FormProps = {
 export const FormSearch = (props: FormProps) => {
   const { onSubmit } = props;
   const formInstance = useForm();
-  const { register, control, handleSubmit } = formInstance;
+  const { register, control, handleSubmit, reset } = formInstance;
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -27,36 +34,40 @@ export const FormSearch = (props: FormProps) => {
         <option value="hamburgo">Hamburgo</option>
       </SelectCity>
 
-      <Controller
-        name="dateFrom"
-        control={control}
-        defaultValue={undefined}
-        render={({ field }) => (
-          <>
+      <ContainerDates>
+        <Controller
+          name="dateFrom"
+          control={control}
+          defaultValue={undefined}
+          render={({ field }) => (
             <DatePicker
               onChange={(e) => field.onChange(e)}
               selected={field.value}
               placeholderText="From"
             />
-            {/* <AiOutlineCalendar /> */}
-          </>
-        )}
-      />
+          )}
+        />
 
-      <Controller
-        name="dateTo"
-        control={control}
-        defaultValue={undefined}
-        render={({ field }) => (
-          <DatePicker
-            onChange={(e) => field.onChange(e)}
-            selected={field.value}
-            placeholderText="To"
-          />
-        )}
-      />
+        <Controller
+          name="dateTo"
+          control={control}
+          defaultValue={undefined}
+          render={({ field }) => (
+            <DatePicker
+              onChange={(e) => field.onChange(e)}
+              selected={field.value}
+              placeholderText="To"
+            />
+          )}
+        />
+      </ContainerDates>
 
-      <Submit type="submit">Submit</Submit>
+      <ContentButtons>
+        <Submit type="submit">Submit</Submit>
+        <Reset
+          onClick={() => reset()}
+        >Reset</Reset>
+      </ContentButtons>
     </Form>
   );
 };
