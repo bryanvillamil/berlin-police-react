@@ -1,7 +1,12 @@
 import React from 'react'
+import { ContentLoading, SpanLoading } from './styled'
 
 export const Loading = () => {
   return (
-    <div>loading</div>
+    <ContentLoading>
+      <SpanLoading></SpanLoading>
+      <SpanLoading></SpanLoading>
+      <SpanLoading></SpanLoading>
+    </ContentLoading>
   )
 }

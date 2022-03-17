@@ -2,11 +2,9 @@ import axios from "axios";
 import { useInfiniteQuery } from "react-query";
 import { BikeInfo } from "@types";
 
-const header = {
-  token: "jHe3QbAFD62nDuH5qZPNoZPHZxgPL-C5VfgXT_m5ePk",
-};
-
-// search?location=Berlin&distance=10
+// const header = {
+//   token: "jHe3QbAFD62nDuH5qZPNoZPHZxgPL-C5VfgXT_m5ePk",
+// };
 
 export const api = axios.create({
   baseURL: `https://bikeindex.org/api/v3`,

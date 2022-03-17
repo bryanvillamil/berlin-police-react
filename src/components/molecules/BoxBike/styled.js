@@ -3,6 +3,7 @@ import { up } from "styled-breakpoints";
 
 export const Box = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   padding: 25px;
   border-radius: 5px;
@@ -20,6 +21,9 @@ export const BoxImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  order: 2;
+  width: 100%;
+  margin-top: 20px;
   img {
     width: 100%;
     height: 100%;
@@ -30,6 +34,11 @@ export const BoxImg = styled.div`
   svg {
     font-size: 90px;
   }
+  ${up("md")} {
+    order: 1;
+    width: initial;
+    margin-top: 0;
+  }
 `;
 
 export const BoxInfo = styled.div`
@@ -37,15 +46,26 @@ export const BoxInfo = styled.div`
   flex-wrap: wrap;
   margin-left: 20px;
   align-content: flex-start;
+  order: 1;
+  width: 100%;
   h2 {
     width: 100%;
     margin: 0;
     color: #3498db;
   }
-  p {
-    width: 100%;
-    margin-bottom: 5px;
+  ${up("md")} {
+    order: 2;
+    width: initial;
   }
+`;
+
+export const Description = styled.p`
+  width: 100%;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 `;
 
 export const BoxInfoDate = styled.p`

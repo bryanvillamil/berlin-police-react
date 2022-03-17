@@ -2,7 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { GrBike } from "react-icons/gr";
 import { BikeInfo } from "@types";
-import { Box, BoxImg, BoxInfo, BoxInfoDate } from "./styled";
+import { Box, BoxImg, BoxInfo, Description, BoxInfoDate } from "./styled";
 
 type Props = Pick<BikeInfo, "title"> & Partial<BikeInfo>;
 
@@ -27,7 +27,7 @@ export const BoxBike = (props: Props) => {
 
       <BoxInfo>
         <h2>{title}</h2>
-        {description && <p>{description}</p>}
+        {description && <Description>{description}</Description>}
         <BoxInfoDate>Stolen Location: <span>{stolen_location}</span></BoxInfoDate>
         <BoxInfoDate>Date Stolen: <span>{dateformat}</span></BoxInfoDate>
    
